@@ -1,0 +1,161 @@
+@font-face {
+  font-family: "aleo";
+  src: url(fonts/aleo-regular-webfont.woff) format(woff);
+  src: url(fonts/aleo-regular-webfont.woff2) format(woff2);
+  font-weight: 500;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+#root,
+#__next {
+  isolation: isolate;
+}
+
+:root {
+    --default-box-shadow:1px 1px 8px 4px rgba(203, 203, 203, 0.263);
+    --full-curve-border-radius: 25px;
+}
+
+
+body {
+  font-family: "aleo";
+  font-weight: 600;
+}
+
+ul {
+  list-style: none;
+  display: grid;
+  gap: 24px;
+  grid-template-rows: 4fr 4fr 4fr 4fr;
+}
+
+ul li button {
+  padding: 8px;
+  background-color: inherit;
+  border: none;
+  font-size: 1.2rem;
+}
+
+li {
+  align-items: center;
+  display: flex;
+  padding: 12px;
+  width: 201%;
+  border-radius: 25px 0px 0px 25px;
+}
+
+li img {
+  width: 1.4rem;
+}
+
+#home {
+  background-color: #e1e2ec;
+  border-radius: 50px;
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  gap: 16px;
+  padding: 25px;
+}
+
+#dashboard {
+  align-items: start;
+  height: 96vh;
+  display: grid;
+  grid-template-rows: 0.1fr 4fr;
+  gap: 24px;
+  padding: 25px;
+  justify-content: flex-start;
+  grid-area: 1 / 1;
+}
+
+#container {
+  padding: 14px;
+}
+
+li:hover {
+cursor: pointer;
+  background-color: #e1e2ec;
+}
+li button:hover {
+    cursor: pointer;
+}
+
+#greetingContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#helloCard {
+    display: grid;
+    grid-template-columns: 6fr 3fr;
+    align-items: start;
+    width: auto;
+    justify-content: space-evenly;
+    border-radius: var(--full-curve-border-radius);
+    background-color: white;
+    padding: 25px;
+    box-shadow: var(--default-box-shadow);
+}
+
+#imageContainer img {
+    width:  25%;
+    height: 29%;
+    position: absolute;
+    right: 20rem;
+    top: -0.8rem;
+    overflow: visible;
+}
+
+#mainContainer {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    gap: 24px;
+}
+
+#tasksContainer {
+    border-radius: var(--full-curve-border-radius);
+    background-color: white;
+    box-shadow: var(--default-box-shadow);
+}
+
+#taskDetailsContainer {
+    background-color: white;
+    border-radius: var(--full-curve-border-radius);
+    box-shadow: var(--default-box-shadow);
+}
