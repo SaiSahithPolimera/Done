@@ -1,4 +1,5 @@
-import { formatDistance, subDays } from "date-fns";
+import { tasksContainer } from "./taskContainer";
+import { taskEditor } from "./taskEditor";
 
 const home = () => {
   const home = document.createElement("div");
@@ -18,12 +19,13 @@ const home = () => {
   ];
   const getTimeOfDay = () => {
     let hour = new Date().getHours();
-    if (hour > 12) {
+    if (hour >= 12) {
       hour = hour - 12;
-      if (hour >= 1 && hour < 3) {
+      if (hour > 12 || hour < 3) {
         return "Afternoon";
-      } else if (hour >= 3 && hour < 6) {
-      } else if (hour > 6) {
+      } else if (hour >= 3 && hour < 7) {
+        return "Evening";
+      } else if (hour >= 7 || hour == 12) {
         return "Night";
       }
     } else {
@@ -78,15 +80,9 @@ const home = () => {
   helloCard.appendChild(imageContainer);
   home.appendChild(helloCard);
   const mainContainer = document.createElement("main");
-  mainContainer.id =  "mainContainer";
-  const tasksContainer = document.createElement("div");
-  tasksContainer.id = "tasksContainer";
-  const taskDetailsContainer = document.createElement("div");
-  taskDetailsContainer.id = "taskDetailsContainer";
-  mainContainer.appendChild(tasksContainer);
-  mainContainer.appendChild(taskDetailsContainer);
-
-console.log(formatDistance(subDays(new Date(), 1), new Date(), { addSuffix: true }));
+  mainContainer.id = "mainContainer";
+  mainContainer.appendChild(tasksContainer());
+  mainContainer.appendChild(taskEditor());
   home.appendChild(mainContainer);
   return home;
 };

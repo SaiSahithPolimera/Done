@@ -1,28 +1,34 @@
-import { loadToDo } from "./saveToDo";
+import { loadToDo, saveToDo } from "./saveToDo";
 
+let toDoList = loadToDo();
 const createToDo = (
   id,
   task,
   isCompleted,
   category,
+  dateCreated,
   dueDate,
   notes,
-  status
 ) => {
   const todo = {};
   todo.id = id;
   todo.task = task;
   todo.dueDate = dueDate;
+  todo.dateCreated = dateCreated,
   todo.isCompleted = isCompleted;
   todo.category = category;
   todo.notes = notes;
-  todo.status = status;
-  return addTodo(todo);
+  addTodo(todo);
+  return todo;
 };
 
 const deleteToDo = (id) => {
-  return toDoList.filter((todo) => todo.id !== id);
+  toDoList = toDoList.filter((todo) => todo.id !== id ? todo : false);
+  saveToDo();
+  loadToDo();
 };
+
+
 
 const updateToDo = (
   id,
@@ -30,8 +36,8 @@ const updateToDo = (
   isCompleted,
   category,
   dueDate,
+  dateCreated,
   notes,
-  status
 ) => {
   const todo = toDoList.filter((todo) => {
     if (todo.id === id) {
@@ -43,16 +49,17 @@ const updateToDo = (
   todo.category = category;
   todo.isCompleted = isCompleted;
   todo.dueDate = dueDate;
+  todo.dateCreated = dateCreated;
   todo.notes = notes;
-  todo.status = status;
-  return todo;
+  saveToDo();
+  loadToDo();
 };
 
-const toDoList = loadToDo();
-
 const addTodo = (task) => {
-  todoList.push(task);
-  return todoList;
+  toDoList.push(task);
+  saveToDo();
+  loadToDo();
+  return toDoList;
 };
 const showToDos = () => toDoList;
 
