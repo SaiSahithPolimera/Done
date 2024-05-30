@@ -10,14 +10,17 @@
 *::after {
   box-sizing: border-box;
 }
+
 * {
   margin: 0;
   padding: 0;
 }
+
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
+
 img,
 picture,
 video,
@@ -26,6 +29,7 @@ svg {
   display: block;
   max-width: 100%;
 }
+
 input,
 button,
 textarea,
@@ -41,6 +45,7 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
+
 #root,
 #__next {
   isolation: isolate;
@@ -49,6 +54,7 @@ h6 {
 :root {
   --default-box-shadow: 1px 1px 8px 4px rgba(203, 203, 203, 0.263);
   --full-curve-border-radius: 25px;
+  --task-date-background-color:  rgba(211, 204, 250, 0.679);
 }
 
 body {
@@ -133,7 +139,7 @@ li button:hover {
 }
 
 #imageContainer img {
-  width: 25%;
+  width: 24%;
   height: 29%;
   position: absolute;
   right: 20rem;
@@ -178,6 +184,10 @@ hr {
   grid-template-rows: 1fr 0.01fr;
 }
 
+#todayList header {
+  margin-bottom: -12px;
+}
+
 #miscellaneous {
   padding: 0px 20px;
 }
@@ -192,7 +202,7 @@ hr {
 
 #quickAdder #addTask {
   padding: 12px 14px;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 1rem;
   border-radius: 15px;
   border: none;
@@ -202,7 +212,7 @@ hr {
 }
 
 #addTask:focus {
-  outline-color: rgb(218, 203, 235);
+  outline-color: rgb(210, 190, 233);
 }
 
 #addButton {
@@ -257,11 +267,15 @@ input[type="checkbox"]:hover {
 
 #task {
   padding: 12px;
-  background-color: rgba(211, 204, 250, 0.679);
+  background-color: var(--task-date-background-color);
   border-radius: 25px;
   display: grid;
   grid-template-columns: 0.49fr 4fr 0.5fr;
   grid-template-rows: 1fr;
+}
+
+#task:hover {
+  cursor: pointer;
 }
 
 #task p:first-child {
@@ -288,4 +302,66 @@ input[type="checkbox"]:hover {
 
 .deleteButton:hover {
   cursor: pointer;
+}
+
+#done {
+  padding: 0px;
+  display: grid;
+  gap: 14px;
+}
+
+#taskEditor {
+  display: grid;
+  grid-template-rows: 0.1fr 0.02fr 0.1fr 4fr;
+  gap: 16px;
+  padding: 25px;
+}
+
+#chipContainer {
+  display: flex;
+  gap: 12px;
+}
+
+#dateChip {
+  display: flex;
+  gap: 4px;
+  font-size: 0.8rem;
+  border-radius: 25px;
+  width: 20%;
+  background-color: #e1e2ece1;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 8px;
+}
+
+#dateChip:hover {
+  cursor: pointer;
+}
+
+#taskInput {
+  border: none;
+  font-size: 1.4rem;
+}
+
+#taskInput:focus{
+  outline: none;
+}
+
+#taskEditor #notesContainer textarea {
+  border: none;
+  background-color: #e1e2ece1;
+  border-radius: var(--full-curve-border-radius);
+  padding: 15px;
+  height: 100%;
+  resize: none;
+}
+
+#taskEditor textarea:focus {
+  outline: none;
+}
+
+#notesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
