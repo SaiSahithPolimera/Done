@@ -33,11 +33,17 @@ const loadEditor = (todo) => {
   });
   title.id = "taskInput";
   title.style.fontWeight = "800";
-  if (task.isCompleted) {
-    title.style.color = "rgba(128, 128, 128, 0.451)";
+  if (todo.isCompleted) {
+    title.style.color = "rgba(128, 128, 128, 0.41)";
+    Editor.style.color = "rgba(128, 128, 128, 0.41)"
     title.style.fontWeight = "500";
   }
-  console.log(todo);
+  else {
+    title.style.color = "";
+    Editor.style.color = ""
+    title.style.fontWeight = "";
+
+  }
   const chipContainer = document.createElement("div");
   chipContainer.id = "chipContainer";
   chipContainer.appendChild(
@@ -48,7 +54,7 @@ const loadEditor = (todo) => {
   );
   chipContainer.appendChild(
     createChip(
-      format(new Date(todo.dueDate), "dd/MM/yyyy"),
+      format(new Date(todo.dateCompleted), "dd/MM/yyyy"),
       `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTE5IDNoLTFWMWgtMnYySDhWMUg2djJINWMtMS4xIDAtMiAuOS0yIDJ2MTRhMiAyIDAgMCAwIDIgMmgxNGMxLjExIDAgMi0uODkgMi0yVjVhMiAyIDAgMCAwLTItMm0wIDE2SDVWOWgxNHpNNSA3VjVoMTR2MnptNS41NiAxMC40Nmw1Ljk0LTUuOTNsLTEuMDctMS4wNmwtNC44NyA0Ljg3bC0yLjExLTIuMTFsLTEuMDYgMS4wNnoiLz48L3N2Zz4=`
     )
   );

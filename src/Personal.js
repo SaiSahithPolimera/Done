@@ -1,10 +1,10 @@
 import { tasksContainer } from "./taskContainer";
 import { taskEditor } from "./taskEditor";
 
-const home = () => {
-  const home = document.createElement("div");
-  home.style.gridArea = "1/2";
-  home.id = "home";
+const Personal = () => {
+  const personal = document.createElement("div");
+  personal.style.gridArea = "1/2";
+  personal.id = "home";
   const greetings = [
     "Have a fruitful day ahead 💐",
     "Make today amazing 💫",
@@ -78,13 +78,13 @@ const home = () => {
   greetingContainer.appendChild(imageContainer);
   helloCard.appendChild(greetingContainer);
   helloCard.appendChild(imageContainer);
-  home.appendChild(helloCard);
+  personal.appendChild(helloCard);
   const mainContainer = document.createElement("main");
   mainContainer.id = "mainContainer";
-  mainContainer.appendChild(tasksContainer());
+  mainContainer.appendChild(tasksContainer("Personal"));
   mainContainer.appendChild(taskEditor());
-  home.appendChild(mainContainer);
-  return home;
+  personal.appendChild(mainContainer);
+  return personal;
 };
 
-export { home };
+export { Personal };

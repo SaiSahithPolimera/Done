@@ -1,6 +1,6 @@
-import { loadToDo, saveToDo } from "./saveToDo";
+import { load, save } from "./save";
 
-let toDoList = loadToDo();
+let toDoList =  load("toDoList");
 
 const createToDo = (
   id,
@@ -8,14 +8,14 @@ const createToDo = (
   isCompleted,
   category,
   dateCreated,
-  dueDate,
+  dateCompleted,
   notes,
 ) => {
   const todo = {};
   todo.id = id;
   todo.task = task;
-  todo.dueDate = dueDate;
   todo.dateCreated = dateCreated,
+  todo.dateCompleted = dateCompleted;
   todo.isCompleted = isCompleted;
   todo.category = category;
   todo.notes = notes;
@@ -25,8 +25,8 @@ const createToDo = (
 
 const deleteToDo = (id) => {
   toDoList = toDoList.filter((todo) => todo.id !== id ? todo : false);
-  saveToDo();
-  loadToDo();
+  save("toDoList", showToDos());
+  load("toDoList");
 };
 
 
@@ -36,8 +36,8 @@ const updateToDo = (
   task,
   isCompleted,
   category,
-  dueDate,
   dateCreated,
+  dateCompleted,
   notes,
 ) => {
   const todo = toDoList.filter((todo) => {
@@ -49,17 +49,17 @@ const updateToDo = (
   todo.task = task;
   todo.category = category;
   todo.isCompleted = isCompleted;
-  todo.dueDate = dueDate;
   todo.dateCreated = dateCreated;
+  todo.dateCompleted = dateCompleted;
   todo.notes = notes;
-  saveToDo();
-  loadToDo();
+  save("toDoList", showToDos());
+  load("toDoList");
 };
 
 const addTodo = (task) => {
   toDoList.push(task);
-  saveToDo();
-  loadToDo();
+  save("toDoList", showToDos());
+  load("toDoList");
   return toDoList;
 };
 const showToDos = () => toDoList;

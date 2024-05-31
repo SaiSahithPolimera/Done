@@ -29,19 +29,18 @@ const checkAvailability = () => {
   return availability;
 };
 
-const saveToDo = () => {
+const save = (name, data) => {
   if (checkAvailability) {
-    const todoList = showToDos();
-    localStorage.setItem("toDoList", JSON.stringify(todoList));
+    localStorage.setItem(name, JSON.stringify(data));
   } else {
     alert("Sorry! We cannot store your tasks locally");
   }
 };
 
-const loadToDo = () => {
-    let json = localStorage.getItem("toDoList");
-    let toDoList = (JSON.parse(json));
-    return toDoList;
+const load = (name) => {
+    let json = localStorage.getItem(name);
+    let data = (JSON.parse(json));
+    return data;
 }
 
-export { saveToDo, loadToDo };
+export { save, load };

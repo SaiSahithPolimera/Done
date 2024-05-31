@@ -184,10 +184,6 @@ hr {
   grid-template-rows: 1fr 0.01fr;
 }
 
-#todayList header {
-  margin-bottom: -12px;
-}
-
 #miscellaneous {
   padding: 0px 20px;
 }
@@ -364,4 +360,84 @@ input[type="checkbox"]:hover {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+#userSection {
+  display: grid;
+  grid-template-rows: 0.1fr 1fr;
+  padding: 25px;
+  background-color: #e1e2ec;
+  border-radius: 50px;
+}
+
+#taskManager {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  gap: 24px;
+}
+
+#projects {
+  background-color: #e1e2ec;
+  padding: 25px;
+  border-radius: 50px;
+}
+
+#dialogBox {
+  align-self: center;
+  justify-self: center;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border: none;
+  border-radius: var(--full-curve-border-radius);
+}
+
+#dialogBox button:hover {
+  cursor: pointer;
+}
+
+#dialogBox img {
+  width: 100%;
+}
+
+#newTaskForm input {
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  border: 2px solid rgb(159, 156, 163);
+  border-radius: 12px;
+  background-color: #ffffffab;
+}
+
+#newTaskForm
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+#newTaskForm input:focus {
+  outline: none;
+  border-color: rgb(210, 190, 233);
+}
+
+#newTaskForm button {
+  background-color: #e1e2ec;
+  border: none;
+  width: 50%;
+  border-radius: 12px;
+  font-size: 1.03rem;
+  padding: 12px;
+}
+
+#newTaskForm button:hover {
+  background-color: #c6caf4;
+}
+
+#closeButton {
+  background: none;
+  border: none;
+  width: 12%;
 }
