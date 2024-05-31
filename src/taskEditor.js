@@ -5,7 +5,6 @@ format(new Date(2014, 1, 11), "MM/dd/yyyy");
 const Editor = document.createElement("div");
 const taskEditor = () => {
   Editor.id = "taskEditor";
-  const title = document.createElement("h1");
   return Editor;
 };
 
@@ -53,11 +52,20 @@ const loadEditor = (todo) => {
       `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTE5IDNoLTFWMWgtMnYySDhWMUg2djJINWMtMS4xIDAtMiAuOS0yIDJ2MTRhMiAyIDAgMCAwIDIgMmgxNGMxLjExIDAgMi0uODkgMi0yVjVhMiAyIDAgMCAwLTItMm0wIDE2SDVWOWgxNHpNNSA3VjVoMTR2MnptNS41NiAxMC40Nmw1Ljk0LTUuOTNsLTEuMDctMS4wNmwtNC44NyA0Ljg3bC0yLjExLTIuMTFsLTEuMDYgMS4wNnoiLz48L3N2Zz4=`
     )
   );
-  if (!Editor.hasChildNodes()) {
+  const appendEditor = () => {
     Editor.appendChild(title);
     Editor.appendChild(chipContainer);
     Editor.appendChild(categoryChip);
     Editor.appendChild(notesContainer);
+  }
+  if (!Editor.hasChildNodes()) {
+    appendEditor();
+  }
+  else {
+    while(Editor.hasChildNodes()) {
+      Editor.removeChild(Editor.firstChild);
+    }
+    appendEditor();
   }
   return Editor;
 };
