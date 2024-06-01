@@ -14,7 +14,6 @@ container.style.gridTemplateColumns = "1fr 4fr";
 body.appendChild(container);
 const Dashboard = document.createElement("div");
 Dashboard.id = "dashboard";
-const itemsList = document.createElement("ul");
 const navbar = document.createElement("nav");
 navbar.id = "navBar";
 navbar.innerHTML = `
@@ -42,6 +41,7 @@ let options = load("dashBoardOptions");
 // save("dashBoardOptions", options);
 
 let currentTab = "Personal";
+let useListsCount = 0;
 const dialogBox = document.createElement("dialog");
 dialogBox.id = "dialogBox";
 const closeButton = document.createElement("button");
@@ -64,15 +64,15 @@ form.appendChild(listName);
 form.appendChild(saveButton);
 dialogBox.appendChild(closeButton);
 dialogBox.appendChild(form);
-let categoryList;
-options.forEach((option, index) => {
+
+const itemsList = document.createElement("ul");
+const createListItem = (option, index) => {
   let listItem = document.createElement("li");
   let button = document.createElement("button");
   let icon = document.createElement("img");
   if (option.path !== "user") {
     icon.src = option.path;
     listItem.appendChild(icon);
-    console.log("defined" + option.path);
   }
   button.classList.add("category");
   button.textContent = option.value;
@@ -83,7 +83,12 @@ options.forEach((option, index) => {
   dialogBox.style.display = "none";
   button.addEventListener("click", () => {
     if (button.textContent === "New List") {
+      if (useListsCount > 4) {
+        alert("Sorry! we cannot more than 4 custom lists");
+        return;
+      }
       dialogBox.style.display = "flex";
+      listName.value = "";
       dialogBox.showModal();
     }
     closeButton.addEventListener("click", () => {
@@ -96,11 +101,12 @@ options.forEach((option, index) => {
         alert("This field cannot be empty!");
         return;
       } else {
+        dialogBox.close();
         let option = {};
         option.value = listName.value;
         option.path = "user";
         dialogBox.style.display = "none";
-        let newListItem = document.createElement('li');
+        let newListItem = document.createElement("li");
         let child = Dashboard.lastChild;
         newListItem.textContent = option.value;
         if (option.path === "" || option.path === "user") {
@@ -109,22 +115,26 @@ options.forEach((option, index) => {
             "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTYgMTlhMiAyIDAgMCAwIDIgMmg4YTIgMiAwIDAgMCAyLTJWN0g2ek04IDloOHYxMEg4em03LjUtNWwtMS0xaC01bC0xIDFINXYyaDE0VjR6Ii8+PC9zdmc+";
           newListItem.appendChild(deleteButton);
           deleteButton.addEventListener("click", () => {
-            options.splice(options.length-1, 1);
+            alert("clicked");
+            options.splice(index, 1);
             save("dashBoardOptions", options);
             child.removeChild(newListItem);
             options = load("dashBoardOptions");
+            useListsCount--;
           });
-          console.log("undefined" + option.path);
         }
         options.push(option);
         save("dashBoardOptions", options);
         options = load("dashBoardOptions");
-        child.appendChild(newListItem);
+        createList(itemsList);
+        useListsCount++;
       }
     });
   });
+
   listItem.appendChild(button);
   if (option.path === "" || option.path === "user") {
+    useListsCount++;
     const deleteButton = document.createElement("img");
     deleteButton.src =
       "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTYgMTlhMiAyIDAgMCAwIDIgMmg4YTIgMiAwIDAgMCAyLTJWN0g2ek04IDloOHYxMEg4em03LjUtNWwtMS0xaC01bC0xIDFINXYyaDE0VjR6Ii8+PC9zdmc+";
@@ -135,11 +145,19 @@ options.forEach((option, index) => {
       itemsList.removeChild(listItem);
       options = load("dashBoardOptions");
     });
-    console.log("undefined" + option.path);
   }
-  categoryList = itemsList;
   itemsList.appendChild(listItem);
-});
+  return itemsList;
+};
+
+const createList = (itemsList) => {
+  while (itemsList.hasChildNodes()) {
+    itemsList.removeChild(itemsList.lastChild);
+  }
+  options.forEach((option, index) => {
+    Dashboard.appendChild(createListItem(option, index));
+  });
+};
 
 const optionsList = itemsList.querySelectorAll("li");
 optionsList.forEach((button) => {
@@ -156,7 +174,6 @@ const resetColor = (buttons) => {
 };
 
 Dashboard.appendChild(navbar);
-Dashboard.appendChild(itemsList);
-
+createList(itemsList);
 container.appendChild(Dashboard);
 container.appendChild(Personal());

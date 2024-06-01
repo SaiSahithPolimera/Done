@@ -91,6 +91,7 @@ li img {
 #home {
   background-color: #e1e2ec;
   border-radius: 50px;
+  height: auto;
   display: grid;
   grid-template-rows: 1fr 3fr;
   gap: 16px;
