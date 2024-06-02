@@ -1,4 +1,4 @@
-import { tasksContainer } from "./taskContainer";
+import { taskContainer } from "./taskContainer";
 import { taskEditor } from "./taskEditor";
 
 const Personal = () => {
@@ -81,7 +81,7 @@ const Personal = () => {
   personal.appendChild(helloCard);
   const mainContainer = document.createElement("main");
   mainContainer.id = "mainContainer";
-  mainContainer.appendChild(tasksContainer("Personal"));
+  mainContainer.appendChild(taskContainer("Personal"));
   personal.appendChild(mainContainer);
   return personal;  
 };

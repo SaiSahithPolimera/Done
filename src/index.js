@@ -4,7 +4,7 @@ import { load, save } from "./save.js";
 import { formatDistance, subDays, isToday } from "date-fns";
 import { Personal } from "./Personal.js";
 import { allTasks } from "./allTasks.js";
-import { tasksContainer } from "./taskContainer.js";
+import { taskContainer } from "./taskContainer.js";
 import { taskEditor } from "./taskEditor.js";
 
 const body = document.querySelector("body");
@@ -42,7 +42,7 @@ let currentTab = "Personal";
 const dialogBox = document.createElement("dialog");
 dialogBox.id = "dialogBox";
 const closeButton = document.createElement("button");
-const PersonalTasks = Personal();
+// const PersonalTasks = Personal();
 // const AllTasks = allTasks();
 closeButton.id = "closeButton";
 const closeIcon = document.createElement("img");
@@ -115,7 +115,7 @@ const createListItem = (option, index) => {
     if (button.textContent === "Personal" && currentTab !== "Personal") {
       currentTab = "Personal";
       container.removeChild(currentChild);
-      currentChild = container.appendChild(PersonalTasks);
+      currentChild = container.appendChild(Personal());
       return;
     }
     if (button.textContent === "All tasks" && currentTab !== "All tasks") {
@@ -146,7 +146,7 @@ const createListItem = (option, index) => {
       const heading = document.createElement("h2");
       heading.textContent = button.textContent;
       newContainer.appendChild(heading)
-      newContainer.appendChild(tasksContainer(button.textContent));
+      newContainer.appendChild(taskContainer(button.textContent));
       currentChild = container.appendChild(newContainer);
       currentTab = button.textContent;
     }
@@ -189,7 +189,7 @@ const createList = (itemsList) => {
 Dashboard.appendChild(navbar);
 createList(itemsList);
 container.appendChild(Dashboard);
-currentChild = container.appendChild(PersonalTasks);
+currentChild = container.appendChild(Personal());
 
 const optionsList = itemsList.querySelectorAll("li");
 optionsList.forEach((button) => {

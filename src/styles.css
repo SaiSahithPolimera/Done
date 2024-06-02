@@ -95,7 +95,7 @@ li img {
   border-radius: var(--large-container-border-radius);
   height: auto;
   display: grid;
-  grid-template-rows: 1fr 3fr;
+  grid-template-rows: 0.5fr 2fr;
   gap: 16px;
   padding: 25px;
 }
@@ -198,21 +198,6 @@ li button:hover {
   top: -0.8rem;
 }
 
-#mainContainer {
-  display: grid;
-  height: auto;
-  gap: 24px;
-}
-
-#tasksContainer {
-  border-radius: var(--full-curve-border-radius);
-  background-color: white;
-  display: grid;
-  height: 100%;
-  overflow: auto;
-  grid-template-rows: 1fr 1fr 0.1fr;
-  box-shadow: var(--default-box-shadow);
-}
 
 #taskEditor {
   background-color: white;
@@ -500,7 +485,7 @@ input[type="checkbox"]:hover {
 #allTasks {
   padding: 25px;
   border-radius: var(--large-container-border-radius);
-  background-color: #e5e5e5a9;
+  background-color: var(--default-background-color);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -533,12 +518,6 @@ input[type="checkbox"]:hover {
 
 #allTasks #task p:nth-child(1) {
   overflow: unset;
-}
-
-#newContainer {
-  display: grid;
-  padding: 25px;
-  grid-template-columns: 0.5fr 1fr;
 }
 
 #todoEditor {
@@ -593,4 +572,50 @@ input[type="checkbox"]:hover {
 
 #dateChip img {
   width: 16%;
+}
+
+#mainContainer {
+  display: grid;
+  height: 100%;
+  align-content: space-around;
+  grid-template-rows: 1fr 0.001fr;
+}
+
+#inputContainer {
+  align-self: end;
+  display: flex;
+  padding: 15px;
+  gap: 12px;
+  align-items: center;
+}
+
+#addInput {
+  padding: 15px;
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+}
+
+#addInput:focus {
+  outline: 2px solid rgb(170, 64, 241);
+}
+
+#addButton {
+  background-color: none;
+  width: 2.3%;
+}
+
+#newContainer {
+  background-color: var(--default-background-color);
+  border-radius: var(--large-container-border-radius);
+  padding: 25px;
+  display: grid;
+  grid-template-rows: 0.1fr 1fr;
+}
+
+#taskContainer {
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
+  gap: 12px;
 }

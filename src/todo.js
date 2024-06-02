@@ -1,6 +1,18 @@
 import { load, save } from "./save";
 
 let toDoList =  load("toDoList");
+// [
+//   {
+//     id: 2,
+//     task: "Here i am",
+//     dateCreated: new Date(),
+//     dateCompleted: new Date(),
+//     isCompleted: false,
+//     category: "Personal",
+//     notes: "",
+//   },
+// ];
+
 
 const createToDo = (
   id,
@@ -28,7 +40,6 @@ const deleteToDo = (id) => {
   save("toDoList", showToDos());
   load("toDoList");
 };
-
 
 
 const updateToDo = (
