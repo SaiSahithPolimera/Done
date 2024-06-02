@@ -1,9 +1,34 @@
 import { showToDos, createToDo, deleteToDo, updateToDo } from "./todo";
 import { loadEditor } from "./taskEditor";
 
+
+const taskContainer = document.createElement("div");
 const todayList = document.createElement("div");
 const Done = document.createElement("h3");
 const Today = document.createElement("h3");
+
+const loadList = (Done, todayList, category) => {
+  let todoList = showToDos();
+  (todoList) = todoList.filter((todo) => {
+    if(todo.category === category) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  });
+  todoList.forEach((todo) => {
+    if (todo.category === category) {
+      
+      if (todo.isCompleted) {
+        Done.appendChild(createTask(todo));
+      } else {
+        todayList.appendChild(createTask(todo));
+      }
+    }
+  });
+};
+
 const createTask = (todo) => {
     const container = document.createElement("div");
     const checkBox = document.createElement("input");
@@ -16,7 +41,7 @@ const createTask = (todo) => {
     checkBox.setAttribute("type", "checkbox");
     checkBox.checked = todo.isCompleted;
     container.appendChild(checkBox);
-    taskContent.textContent = todo.task;
+    taskContent.textContent = todo.task ;
     taskCategory.textContent = todo.category;
     deleteIcon.src =
       "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTYgMTlhMiAyIDAgMCAwIDIgMmg4YTIgMiAwIDAgMCAyLTJWN0g2ek04IDloOHYxMEg4em03LjUtNWwtMS0xaC01bC0xIDFINXYyaDE0VjR6Ii8+PC9zdmc+";
@@ -66,7 +91,8 @@ const createTask = (todo) => {
       dialogBox.addEventListener("keydown", (event) => {
         if(event.key === "Enter") {
           dialogBox.close();
-          dialogBox.style.display = "none"
+          dialogBox.style.display = "none";
+          updateTask(container);
         }
       })
       dialogBox.showModal();
@@ -86,36 +112,12 @@ const removeChild = (listContainer, task) => {
   listContainer.removeChild(task);
 };
 
-const loadList = (Done, todayList, category) => {
-  let todoList = showToDos();
-  (todoList) = todoList.filter((todo) => {
-    if(todo.category === category) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  });
-  todoList.forEach((todo) => {
-    if (todo.category === category) {
-      
-      if (todo.isCompleted) {
-        Done.appendChild(createTask(todo));
-      } else {
-        todayList.appendChild(createTask(todo));
-      }
-    }
-  });
-};
 
 const addToDo = (container, task) => {
   container.appendChild(task);
 };
 
 const tasksContainer = (category) => {
-  console.log(category);
-  const taskContainer = document.createElement("div");
-  const line = document.createElement("hr");
   const miscellaneous = document.createElement("div");
   const quickAdder = document.createElement("div");
   const input = document.createElement("input");

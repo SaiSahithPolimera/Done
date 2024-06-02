@@ -56,6 +56,9 @@ const createTask = (todo, allTasksContainer) => {
 
 const allTasks = () => {
   allTasksContainer.id = "allTasks";
+  while(allTasksContainer.hasChildNodes()) {
+    allTasksContainer.removeChild(allTasksContainer.lastChild);
+  }
   const todoList = showToDos();
   todoList.forEach((todo) => {
     allTasksContainer.appendChild(createTask(todo, allTasks));

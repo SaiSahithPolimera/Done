@@ -43,7 +43,7 @@ const dialogBox = document.createElement("dialog");
 dialogBox.id = "dialogBox";
 const closeButton = document.createElement("button");
 const PersonalTasks = Personal();
-const AllTasks = allTasks();
+// const AllTasks = allTasks();
 closeButton.id = "closeButton";
 const closeIcon = document.createElement("img");
 closeIcon.src = `
@@ -115,13 +115,13 @@ const createListItem = (option, index) => {
     if (button.textContent === "Personal" && currentTab !== "Personal") {
       currentTab = "Personal";
       container.removeChild(currentChild);
-      currentChild = container.appendChild(Personal());
+      currentChild = container.appendChild(PersonalTasks);
       return;
     }
     if (button.textContent === "All tasks" && currentTab !== "All tasks") {
       currentTab = "All tasks";
       container.removeChild(currentChild);
-      currentChild = container.appendChild(AllTasks);
+      currentChild = container.appendChild(allTasks());
       return;
     }
     if (button.textContent === "New List") {
@@ -147,7 +147,6 @@ const createListItem = (option, index) => {
       heading.textContent = button.textContent;
       newContainer.appendChild(heading)
       newContainer.appendChild(tasksContainer(button.textContent));
-      newContainer.appendChild(taskEditor());
       currentChild = container.appendChild(newContainer);
       currentTab = button.textContent;
     }
