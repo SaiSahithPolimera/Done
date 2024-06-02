@@ -54,7 +54,9 @@ h6 {
 :root {
   --default-box-shadow: 1px 1px 8px 4px rgba(203, 203, 203, 0.263);
   --full-curve-border-radius: 25px;
-  --task-date-background-color:  rgba(211, 204, 250, 0.679);
+  --large-container-border-radius: 50px;
+  --task-date-background-color: rgba(211, 204, 250, 0.679);
+  --default-background-color: #e1e2ec;
 }
 
 body {
@@ -80,17 +82,17 @@ li {
   align-items: center;
   display: flex;
   padding: 12px;
-  width: 201%;
-  border-radius: 25px 0px 0px 25px;
+  width: 100%;
+  border-radius: 25px 25px 25px 25px;
 }
 
 li img {
   width: 1.4rem;
 }
 
-#home {
-  background-color: #e1e2ec;
-  border-radius: 50px;
+#personal {
+  background-color: var(--default-background-color);
+  border-radius: var(--large-container-border-radius);
   height: auto;
   display: grid;
   grid-template-rows: 1fr 3fr;
@@ -103,6 +105,7 @@ li img {
   height: 96vh;
   display: grid;
   grid-template-rows: 0.1fr 4fr;
+  overflow-y: auto;
   gap: 24px;
   padding: 25px;
   justify-content: flex-start;
@@ -113,11 +116,18 @@ li img {
   padding: 14px;
 }
 
+#dashboard li button {
+  font-size: 0.92rem;
+}
+
 li:hover {
   cursor: pointer;
-  background-color: #e1e2ec;
+  transition: 0.1s ease-in-out;
+  background-color: var(--default-background-color);
 }
+
 li button:hover {
+  transition: 0.1s ease-in-out;
   cursor: pointer;
 }
 
@@ -139,24 +149,68 @@ li button:hover {
   box-shadow: var(--default-box-shadow);
 }
 
+::-webkit-scrollbar {
+  width: 0.45rem;
+  scroll-behavior: smooth;
+  scroll-margin-left: 12px;
+  scrollbar-gutter: stable;
+}
+
+::-webkit-scrollbar-track {
+  background-color: hsl(0, 0%, 100%);
+  margin-block: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(rgb(167, 66, 255), rgb(231, 189, 252));
+  border-radius: 100vw;
+  scrollbar-gutter: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    rgba(167, 66, 255, 0.849),
+    rgba(68, 68, 232, 0.871)
+  );
+}
+
+#dashboard:hover::-webkit-scrollbar {
+  display: grid;
+}
+
+#dashboard::-webkit-scrollbar {
+  display: none;
+}
+
+#container:hover::-webkit-scrollbar {
+  display: grid;
+}
+
+#container::-webkit-scrollbar {
+  display: none;
+}
+
 #imageContainer img {
   width: 24%;
   height: 29%;
   position: absolute;
   right: 20rem;
   top: -0.8rem;
-  overflow: visible;
 }
 
 #mainContainer {
   display: grid;
-  grid-template-columns: 2fr 2fr;
+  height: auto;
   gap: 24px;
 }
 
 #tasksContainer {
   border-radius: var(--full-curve-border-radius);
   background-color: white;
+  display: grid;
+  height: 100%;
+  overflow: auto;
+  grid-template-rows: 1fr 1fr 0.1fr;
   box-shadow: var(--default-box-shadow);
 }
 
@@ -164,11 +218,6 @@ li button:hover {
   background-color: white;
   border-radius: var(--full-curve-border-radius);
   box-shadow: var(--default-box-shadow);
-}
-
-#tasksContainer {
-  display: grid;
-  grid-template-rows: 2fr 0.1fr 1.4fr 0.1fr;
 }
 
 hr {
@@ -182,7 +231,7 @@ hr {
   padding: 20px;
   display: grid;
   gap: 14px;
-  grid-template-rows: 1fr 0.01fr;
+  grid-template-rows: 0.001fr 0.1fr;
 }
 
 #miscellaneous {
@@ -192,9 +241,9 @@ hr {
 #quickAdder {
   padding: 20px;
   display: grid;
-  grid-template-columns: 1fr 0.05fr;
+  grid-template-columns: 1fr 0.045fr;
+  gap: 12px;
   align-items: center;
-  border-radius: 0px 0px 25px 25px;
 }
 
 #quickAdder #addTask {
@@ -204,7 +253,7 @@ hr {
   border-radius: 15px;
   border: none;
   color: black;
-  background-color: #e3e3e7c8;
+  background-color: #e1e2ece1;
   width: 100%;
 }
 
@@ -215,6 +264,7 @@ hr {
 #addButton {
   background-color: inherit;
   border: none;
+  width: 42%;
 }
 
 #addButton:hover {
@@ -222,7 +272,6 @@ hr {
 }
 
 #addButton img {
-  margin: 0px 12px 4px 5px;
   width: 100%;
 }
 
@@ -266,13 +315,21 @@ input[type="checkbox"]:hover {
   padding: 12px;
   background-color: var(--task-date-background-color);
   border-radius: 25px;
-  display: grid;
-  grid-template-columns: 0.49fr 4fr 0.5fr;
-  grid-template-rows: 1fr;
+  display: grid;  
+  grid-template-columns: 0.18fr 4fr 0.20fr;
+  
+}
+
+#task div p:nth-child(1) {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 #task:hover {
   cursor: pointer;
+  transition: 0.1s ease-in-out;
+  background-color: rgba(211, 204, 250, 0.879);
 }
 
 #task p:first-child {
@@ -340,7 +397,7 @@ input[type="checkbox"]:hover {
   font-size: 1.4rem;
 }
 
-#taskInput:focus{
+#taskInput:focus {
   outline: none;
 }
 
@@ -349,7 +406,7 @@ input[type="checkbox"]:hover {
   background-color: #e1e2ece1;
   border-radius: var(--full-curve-border-radius);
   padding: 15px;
-  height: 100%;
+  height: 50%;
   resize: none;
 }
 
@@ -367,19 +424,7 @@ input[type="checkbox"]:hover {
   display: grid;
   grid-template-rows: 0.1fr 1fr;
   padding: 25px;
-  background-color: #e1e2ec;
-  border-radius: 50px;
-}
-
-#taskManager {
-  display: grid;
-  grid-template-columns: 2fr 2fr;
-  gap: 24px;
-}
-
-#projects {
-  background-color: #e1e2ec;
-  padding: 25px;
+  background-color: var(--default-background-color);
   border-radius: 50px;
 }
 
@@ -411,8 +456,7 @@ input[type="checkbox"]:hover {
   background-color: #ffffffab;
 }
 
-#newTaskForm
-{
+#newTaskForm {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -425,7 +469,7 @@ input[type="checkbox"]:hover {
 }
 
 #newTaskForm button {
-  background-color: #e1e2ec;
+  background-color: var(--default-background-color);
   border: none;
   width: 50%;
   border-radius: 12px;
@@ -441,4 +485,112 @@ input[type="checkbox"]:hover {
   background: none;
   border: none;
   width: 12%;
+}
+
+#projects {
+  display: grid;
+  padding: 25px;
+  grid-template-rows: 0.5fr 6fr;
+  background-color: var(--default-background-color);
+  border-radius: var(--large-container-border-radius);
+}
+ 
+
+
+#allTasks {
+  padding: 25px;
+  border-radius: var(--large-container-border-radius);
+  background-color: #e5e5e5a9;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#allTasks #task {
+  padding: 12px;
+  background-color: var(--task-date-background-color);
+  border-radius: 25px;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 0.057fr 1fr 0.4fr 0.07fr;
+  grid-template-rows: 0.5fr;
+}
+
+#allTasks #task input[type="checkbox"]::before {
+  content: "";
+  width: 2rem;
+  height: 2rem;
+  margin-top: 2px;
+  transform: scale(0.9);
+  clip-path: polygon(12% 44%, 39% 63%, 81% 14%, 93% 23%, 41% 83%, 5% 56%);
+  background-color: white;
+}
+
+#allTasks #task span {
+  font-weight: 400;
+  color: rgba(3, 3, 3, 0.796);
+}
+
+#allTasks #task p:nth-child(1) {
+  overflow: unset;
+}
+
+#newContainer {
+  display: grid;
+  padding: 25px;
+  grid-template-columns: 0.5fr 1fr;
+}
+
+#todoEditor {
+  align-self: center;
+  padding: 15px;
+  display: grid;
+  grid-template-rows: 0.1fr 1fr;
+  gap: 12px;
+  border-radius: var(--full-curve-border-radius);
+  justify-self: center;
+  border: none;
+  box-shadow:1px 1px 12px 4px rgba(107, 107, 107, 0.289);
+  
+}
+
+#todoEditor #taskEditor{ 
+  background-color: white;
+  height: 50%;
+  border-radius: var(--full-curve-border-radius);
+  display: grid;
+  grid-template-rows: 1fr 2fr 1fr 4fr;
+  gap: 36px;
+}
+
+#todoEditor textarea {
+  border: none;
+  background-color: #e1e2ece1;
+  border-radius: var(--full-curve-border-radius);
+  padding: 15px;
+  height: 350px;
+  width: 500px;
+  resize: none;
+}
+#todoEditor  img{
+  width: 6%;
+}
+#todoEditor::backdrop{
+  background-color: white;
+  opacity: 0.73;
+}
+#todoEditor img:hover {
+  cursor: pointer;
+}
+
+#todoEditor #taskInput {
+  width: 100%;;
+}
+
+#todoEditor textarea:focus {
+  outline: none;
+}
+
+#dateChip img {
+  width: 16%;
 }

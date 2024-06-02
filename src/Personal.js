@@ -4,7 +4,7 @@ import { taskEditor } from "./taskEditor";
 const Personal = () => {
   const personal = document.createElement("div");
   personal.style.gridArea = "1/2";
-  personal.id = "home";
+  personal.id = "personal";
   const greetings = [
     "Have a fruitful day ahead 💐",
     "Make today amazing 💫",
@@ -82,9 +82,8 @@ const Personal = () => {
   const mainContainer = document.createElement("main");
   mainContainer.id = "mainContainer";
   mainContainer.appendChild(tasksContainer("Personal"));
-  mainContainer.appendChild(taskEditor());
   personal.appendChild(mainContainer);
-  return personal;
+  return personal;  
 };
 
 export { Personal };
