@@ -1,17 +1,19 @@
 import { load, save } from "./save";
 
 let toDoList =  load("toDoList");
-// [
-//   {
-//     id: 2,
-//     task: "Here i am",
-//     dateCreated: new Date(),
-//     dateCompleted: new Date(),
-//     isCompleted: false,
-//     category: "Personal",
-//     notes: "",
-//   },
-// ];
+if (load("toDoList") === null || load("toDoList") === undefined || load("toDoList") === "") {
+  toDoList = [
+    {
+      id: 1,
+      task: "This is a Sample task",
+      dateCreated: new Date(),
+      dateCompleted: new Date(),
+      isCompleted: false,
+      category: "Personal",
+      notes: "",
+    },
+  ];
+}
 
 
 const createToDo = (

@@ -1,5 +1,6 @@
 import { taskContainer } from "./taskContainer";
 import { taskEditor } from "./taskEditor";
+import {save, load} from './save';
 
 const Personal = () => {
   const personal = document.createElement("div");
@@ -46,7 +47,15 @@ const Personal = () => {
   };
 
   const createGreeting = () => {
-    const Greeting = "Good " + getTimeOfDay() + ", Sahith";
+    let userName;
+    if (load("userName") === null || load("userName") === undefined || load("userName") === "") {  
+      userName = prompt("Please enter your name to continue");
+      if(userName.length >= 0) {
+         save("userName", userName);
+       }
+    }
+    userName = load("userName");
+    const Greeting = "Good " + getTimeOfDay() + ", " + userName;
     const wish = greetings[Math.floor(Math.random() * 10)];
     const time = getCurrentTime();
     return { Greeting, wish, time };

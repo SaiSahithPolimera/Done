@@ -64,6 +64,21 @@ body {
   font-weight: 600;
 }
 
+#logo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#logo h4 {
+  color:  rgba(49, 49, 49, 0.725);
+  font-weight: 500;
+}
+
+#logo img {
+  width: 20%;
+}
+
 ul {
   list-style: none;
   display: grid;
